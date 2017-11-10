@@ -10,7 +10,7 @@ export const getPersonalityInsightThunk = content => dispatch => {
   axios.post('/api/pinsights', content)
     .then(res => {
       console.log('THIS RES => ', res)
-      dispatch(getPersonalityInsight(res))
+      dispatch(getPersonalityInsight(res.data))
     })
     .catch(err => console.error(err))
 }
