@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-client": "webpack",
+    "build-client": "webpack -p",
     "build-client-watch": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
     "start-dev": "npm run build-client-watch & npm run start-server",
-    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss --ignore public"
+    "start-server": "NODE_ENV='development' nodemon server -e html,js,scss"
   },
   "author": "",
   "license": "ISC",

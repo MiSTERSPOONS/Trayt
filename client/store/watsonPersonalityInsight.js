@@ -15,10 +15,10 @@ export const getPersonalityInsightThunk = content => dispatch => {
     .catch(err => console.error(err))
 }
 
-export default function (state = [], action) {
+export default function (state = null, action) {
   switch (action.type) {
     case GET_PERSONALITY_INSIGHT:
-      return [action.personalityPortrait]
+      return action.personalityPortrait
     default:
       return state
   }

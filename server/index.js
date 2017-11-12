@@ -14,10 +14,11 @@ const createApp = () => {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
 
-  app.use('/api', require('./api'))
-
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
+
+  // API routes
+  app.use('/api', require('./api'))
 
   // sends index.html
   app.use('*', (req, res) => {
