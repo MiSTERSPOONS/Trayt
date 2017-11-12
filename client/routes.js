@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { Router, Route, Switch } from 'react-router-dom'
 
 import history from './history'
-import { TextEntryContainer, PersonalityPortraitContainer } from './components'
+import { Main, Personalities } from './components'
 
 class Routes extends Component {
   constructor(props) {
@@ -16,11 +16,7 @@ class Routes extends Component {
   render() {
     return (
       <Router history={history}>
-        <TextEntryContainer>
-          <Switch>
-            <Route path="/" component={PersonalityPortraitContainer} />
-          </Switch>
-        </TextEntryContainer>
+        <Main/>
       </Router>
     )
   }
@@ -32,5 +28,3 @@ const mapStateToProps = (state) => {
 
 const RoutesContainer = connect(mapStateToProps)(Routes)
 export default RoutesContainer
-
-// <Route exact path="/lala" component={PersonalityPortraitContainer} />

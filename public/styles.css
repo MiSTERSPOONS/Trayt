@@ -1,3 +1,34 @@
+body {
+  background: rgb(232, 232, 245);
+}
+
 h1 {
-  color: greenyellow
+  color: rgb(187, 52, 100);
+}
+
+#personality-insight-submit {
+  color: palevioletred;
+}
+
+#wordCount {
+  color: grey;
+}
+
+#content {
+  width: 70%;
+}
+
+#table {
+  display: flex;
+  justify-content: space-around;
+  background: #f9f4f7;
+}
+
+/* Trait Name */
+.traitName {
+  color: rgb(180, 66, 119)
+}
+
+.traitRawScore {
+  color: rgb(10, 102, 93)
 }

@@ -5307,8 +5307,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -5317,49 +5315,49 @@ var _reactRedux = __webpack_require__(15);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var Personalities = function Personalities(props) {
+  var _props$personalityPor = props.personalityPortraits,
+      personality = _props$personalityPor.personality,
+      word_count = _props$personalityPor.word_count;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PersonalityPortrait = function (_Component) {
-  _inherits(PersonalityPortrait, _Component);
-
-  function PersonalityPortrait(props) {
-    _classCallCheck(this, PersonalityPortrait);
-
-    return _possibleConstructorReturn(this, (PersonalityPortrait.__proto__ || Object.getPrototypeOf(PersonalityPortrait)).call(this, props));
-  }
-
-  _createClass(PersonalityPortrait, [{
-    key: 'render',
-    value: function render() {
+  return _react2.default.createElement(
+    'table',
+    { id: 'table' },
+    personality.map(function (trait, index) {
       return _react2.default.createElement(
-        'div',
-        null,
+        'thead',
+        { key: index },
         _react2.default.createElement(
-          'h1',
+          'tr',
           null,
-          'PERSONALITY PORTRAIT CONTAINER'
+          _react2.default.createElement(
+            'th',
+            { className: 'traitName' },
+            trait.name
+          )
+        ),
+        _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'td',
+            { className: 'traitRawScore' },
+            Math.floor(trait.raw_score * 100),
+            '%'
+          )
         )
       );
-    }
-  }]);
-
-  return PersonalityPortrait;
-}(_react.Component);
-
-var mapState = function mapState(state) {
-  return {};
+    })
+  );
 };
 
-var mapDispatch = function mapDispatch(dispatch) {
-  return {};
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    personalityPortraits: state.watsonPersonalityInsight
+  };
 };
 
-var PersonalityPortraitContainer = (0, _reactRedux.connect)(mapState, mapDispatch)(PersonalityPortrait);
-exports.default = PersonalityPortraitContainer;
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Personalities);
 
 /***/ }),
 /* 62 */
@@ -28323,15 +28321,7 @@ var Routes = function (_Component) {
       return _react2.default.createElement(
         _reactRouterDom.Router,
         { history: _history2.default },
-        _react2.default.createElement(
-          _components.TextEntryContainer,
-          null,
-          _react2.default.createElement(
-            _reactRouterDom.Switch,
-            null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _components.PersonalityPortraitContainer })
-          )
-        )
+        _react2.default.createElement(_components.Main, null)
       );
     }
   }]);
@@ -28345,8 +28335,6 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var RoutesContainer = (0, _reactRedux.connect)(mapStateToProps)(Routes);
 exports.default = RoutesContainer;
-
-// <Route exact path="/lala" component={PersonalityPortraitContainer} />
 
 /***/ }),
 /* 130 */
@@ -30855,21 +30843,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _TextEntry = __webpack_require__(155);
+var _Main = __webpack_require__(155);
 
-Object.defineProperty(exports, 'TextEntryContainer', {
+Object.defineProperty(exports, 'Main', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_TextEntry).default;
+    return _interopRequireDefault(_Main).default;
   }
 });
 
-var _PersonalityPortrait = __webpack_require__(61);
+var _Personalities = __webpack_require__(61);
 
-Object.defineProperty(exports, 'PersonalityPortraitContainer', {
+Object.defineProperty(exports, 'Personalities', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_PersonalityPortrait).default;
+    return _interopRequireDefault(_Personalities).default;
   }
 });
 
@@ -30880,7 +30868,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(console) {
+
 'use-strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30897,21 +30885,21 @@ var _reactRouterDom = __webpack_require__(51);
 
 var _store = __webpack_require__(45);
 
-var _PersonalityPortrait = __webpack_require__(61);
+var _Personalities = __webpack_require__(61);
 
-var _PersonalityPortrait2 = _interopRequireDefault(_PersonalityPortrait);
+var _Personalities2 = _interopRequireDefault(_Personalities);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextEntry = function TextEntry(props) {
-  console.log('PROPS', props);
+var Main = function Main(props) {
+
   return _react2.default.createElement(
     'div',
-    null,
+    { id: 'form-entry' },
     _react2.default.createElement(
       'h1',
       null,
-      'Jonathan\'s Stackathon - Trayt'
+      'Trayt'
     ),
     _react2.default.createElement(
       'form',
@@ -30922,40 +30910,33 @@ var TextEntry = function TextEntry(props) {
         id: 'content',
         required: 'required',
         placeholder: 'Text written by the person whose personality you\'re interested in...',
-        name: 'content' }),
-      _react2.default.createElement('input', { type: 'submit', value: 'Submit Personality Insight' })
-    ),
-    props.personalityPortraits ? _react2.default.createElement(
-      'div',
-      null,
-      'RECEIEVED Personality Portrait',
-      props.personalityPortraits.personality.map(function (personalityType, index) {
-        return _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'div',
-            { key: index },
-            personalityType.name
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            Math.floor(personalityType.raw_score * 100),
-            '%'
-          )
-        );
+        name: 'content'
+      }),
+      _react2.default.createElement('input', {
+        id: 'personality-insight-submit',
+        type: 'submit',
+        value: 'Submit Personality Insight'
       })
-    ) : _react2.default.createElement(
+    ),
+    _react2.default.createElement(
       'div',
-      null,
-      'EMPTY (TESTING REMOVE LATER and put NULL'
+      { id: 'portrait-container' },
+      props.personalityPortraits ? _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h2',
+          { id: 'wordCount' },
+          props.personalityPortraits.word_count,
+          ' words analyzed'
+        ),
+        _react2.default.createElement(_Personalities2.default, null)
+      ) : null
     )
   );
 };
 
 var mapStateToProps = function mapStateToProps(state) {
-  console.log('STATE', state);
   return {
     personalityPortraits: state.watsonPersonalityInsight
   };
@@ -30965,8 +30946,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     handleSubmit: function handleSubmit(event) {
       event.preventDefault();
-      console.log('hit handle submit in <TextEntry/> ');
-      console.log('What is ownProps? ', ownProps);
       var content = event.target.content.value;
       dispatch((0, _store.getPersonalityInsightThunk)(content));
       event.target.content.value = '';
@@ -30974,65 +30953,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-var TextEntryContainer = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(TextEntry));
-exports.default = TextEntryContainer;
-
-// 'use-strict'
-
-// import React, { Component } from 'react'
-// import { connect } from 'react-redux'
-// import { withRouter } from 'react-router-dom'
-
-// import { getPersonalityInsightThunk } from '../store'
-
-// class TextEntry extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.handleSubmit = this.handleSubmit.bind(this)
-//   }
-
-//   handleSubmit(event) {
-//     event.preventDefault()
-//     const content = event.target.content.value
-//     this.props.personality(content)
-//     event.target.content.value = ''
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <h1>Jonathan's Stackathon - Trayt</h1>
-//         <form onSubmit={(event) => this.handleSubmit(event)}>
-//           <textarea
-//             id="content"
-//             required="required"
-//             placeholder="Text written by the person whose personality you're interested in..."
-//             name="content">
-//           </textarea>
-//           <input type="submit" value="Submit Personality Insight"></input>
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     personalityPortrait: state.personalityPortrait
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     personality: function (content) {
-//       dispatch(getPersonalityInsightThunk(content))
-//     }
-//   }
-// }
-
-// const TextEntryContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(TextEntry))
-// export default TextEntryContainer
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main));
 
 /***/ })
 /******/ ]);
