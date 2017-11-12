@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { getPersonalityInsightThunk } from '../store'
-import Personalities from './Personalities'
+import { Personalities, Needs, Values } from './index.js'
 
 const Main = (props) => {
 
@@ -29,8 +29,10 @@ const Main = (props) => {
         {
           props.personalityPortraits ?
             <div>
-              <h2 id="wordCount">{props.personalityPortraits.word_count} words analyzed</h2>
+              <h2 id="wordCount">{props.personalityPortraits.word_count} words analyzed:</h2>
               <Personalities />
+              <Needs />
+              <Values />
             </div>
             :
             null

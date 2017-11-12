@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const Personalities = (props) => {
-  const { personality } = props.personalityPortraits
+const Values = props => {
+  const { values } = props.personalityPortraits
+
   return (
     <table className="table">
       {
-        personality.length && personality.map((trait, index) => {
+        values.length && values.map((trait, index) => {
           return (
             <thead key={index}>
               <tr>
@@ -23,10 +24,10 @@ const Personalities = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     personalityPortraits: state.watsonPersonalityInsight
   }
 }
 
-export default connect(mapStateToProps)(Personalities)
+export default connect(mapStateToProps)(Values)

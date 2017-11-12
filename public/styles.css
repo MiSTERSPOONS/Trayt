@@ -18,7 +18,7 @@ h1 {
   width: 70%;
 }
 
-#table {
+.table {
   display: flex;
   justify-content: space-around;
   background: #f9f4f7;

@@ -5316,14 +5316,12 @@ var _reactRedux = __webpack_require__(15);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Personalities = function Personalities(props) {
-  var _props$personalityPor = props.personalityPortraits,
-      personality = _props$personalityPor.personality,
-      word_count = _props$personalityPor.word_count;
+  var personality = props.personalityPortraits.personality;
 
   return _react2.default.createElement(
     'table',
-    { id: 'table' },
-    personality.map(function (trait, index) {
+    { className: 'table' },
+    personality.length && personality.map(function (trait, index) {
       return _react2.default.createElement(
         'thead',
         { key: index },
@@ -30861,6 +30859,24 @@ Object.defineProperty(exports, 'Personalities', {
   }
 });
 
+var _Needs = __webpack_require__(156);
+
+Object.defineProperty(exports, 'Needs', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Needs).default;
+  }
+});
+
+var _Values = __webpack_require__(157);
+
+Object.defineProperty(exports, 'Values', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Values).default;
+  }
+});
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
@@ -30885,9 +30901,7 @@ var _reactRouterDom = __webpack_require__(51);
 
 var _store = __webpack_require__(45);
 
-var _Personalities = __webpack_require__(61);
-
-var _Personalities2 = _interopRequireDefault(_Personalities);
+var _index = __webpack_require__(154);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30928,9 +30942,11 @@ var Main = function Main(props) {
           'h2',
           { id: 'wordCount' },
           props.personalityPortraits.word_count,
-          ' words analyzed'
+          ' words analyzed:'
         ),
-        _react2.default.createElement(_Personalities2.default, null)
+        _react2.default.createElement(_index.Personalities, null),
+        _react2.default.createElement(_index.Needs, null),
+        _react2.default.createElement(_index.Values, null)
       ) : null
     )
   );
@@ -30954,6 +30970,130 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main));
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Needs = function Needs(props) {
+  var needs = props.personalityPortraits.needs;
+
+
+  return _react2.default.createElement(
+    'table',
+    { className: 'table' },
+    needs.length && needs.map(function (trait, index) {
+      return _react2.default.createElement(
+        'thead',
+        { key: index },
+        _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'th',
+            { className: 'traitName' },
+            trait.name
+          )
+        ),
+        _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'td',
+            { className: 'traitRawScore' },
+            Math.floor(trait.raw_score * 100),
+            '%'
+          )
+        )
+      );
+    })
+  );
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    personalityPortraits: state.watsonPersonalityInsight
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Needs);
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(15);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Values = function Values(props) {
+  var values = props.personalityPortraits.values;
+
+
+  return _react2.default.createElement(
+    'table',
+    { className: 'table' },
+    values.length && values.map(function (trait, index) {
+      return _react2.default.createElement(
+        'thead',
+        { key: index },
+        _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'th',
+            { className: 'traitName' },
+            trait.name
+          )
+        ),
+        _react2.default.createElement(
+          'tr',
+          null,
+          _react2.default.createElement(
+            'td',
+            { className: 'traitRawScore' },
+            Math.floor(trait.raw_score * 100),
+            '%'
+          )
+        )
+      );
+    })
+  );
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    personalityPortraits: state.watsonPersonalityInsight
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Values);
 
 /***/ })
 /******/ ]);
